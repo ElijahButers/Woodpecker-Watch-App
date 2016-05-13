@@ -90,7 +90,11 @@ extension TasksInterfaceController {
   
   func updateOngoingTasksIfNeeded() {
     if ongoingTable.numberOfRows < tasks.ongoingTasks.count {
-      loadOngoingTasks()
+      let newRowIndex = tasks.ongoingTasks.count-1
+      ongoingTable.insertRowsAtIndexes(NSIndexSet(index: newRowIndex), withRowType: OngoingTaskRowController.RowType)
+      
+      let row = ongoingTable.rowControllerAtIndex(newRowIndex) as! OngoingTaskRowController
+      row.populateWithTask(tasks.ongoingTasks.last!, frameWidth: contentFrame.size.width)
       
       saveTasks()
       updateAddTaskButton()
