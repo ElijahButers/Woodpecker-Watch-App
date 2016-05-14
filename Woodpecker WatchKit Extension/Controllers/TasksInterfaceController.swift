@@ -64,8 +64,15 @@ extension TasksInterfaceController {
     let task = tasks.ongoingTasks[rowIndex]
     tasks.didTask(task)
     if (task.isCompleted) {
-      loadOngoingTasks()
-      loadCompletedTasks()
+      ongoingTable.removeRowsAtIndexes(NSIndexSet(index: rowIndex))
+      
+      let newRowIndex = tasks.completedTasks.count-1
+      completedTable.insertRowsAtIndexes(NSIndexSet(index: newRowIndex), withRowType: CompletedTaskRowController.RowType)
+      
+      let row = completedTable.rowControllerAtIndex(newRowIndex) as! CompletedTaskRowController
+      row.populateWithTask(task)
+      self.updateAddTaskButton()
+      self.updateCompletedLabel()
     }
     else {
       let row = ongoingTable.rowControllerAtIndex(rowIndex) as! OngoingTaskRowController
