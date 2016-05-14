@@ -125,6 +125,12 @@ extension TasksInterfaceController {
   
   func updateAddTaskButton() {
     addTaskButton.setHidden(ongoingTable.numberOfRows != 0)
+    
+    if (ongoingTable.numberOfRows == 0) {
+      addTaskButton.setAlpha(0)
+      animateWithDuration(0.4) { self.addTaskButton.setAlpha(1)
+    }
+    }
   }
 }
 
