@@ -136,12 +136,15 @@ extension NewTaskInterfaceController {
   
   func selectColor(color: Task.Color, button: WKInterfaceButton) {
     selectedColor = color
-    if let previous = selectedColorButton {
+    
+    self.animateWithDuration(0.4) {
+    if let previous = self.selectedColorButton {
       previous.setAlpha(0.3)
     }
-    selectedColorButton = button
+    self.selectedColorButton = button
     button.setAlpha(1)
-    addNameGroup.setBackgroundColor(color.color.colorWithAlphaComponent(0.3))
+    self.addNameGroup.setBackgroundColor(color.color.colorWithAlphaComponent(0.3))
+  }
   }
   
   @IBAction func onBlue() {
