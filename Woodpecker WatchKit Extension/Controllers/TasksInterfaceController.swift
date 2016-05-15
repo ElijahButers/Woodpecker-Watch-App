@@ -76,7 +76,9 @@ extension TasksInterfaceController {
     }
     else {
       let row = ongoingTable.rowControllerAtIndex(rowIndex) as! OngoingTaskRowController
-      row.updateProgressWithTask(task, frameWidth:contentFrame.size.width)
+      animateWithDuration(0.4) {
+        row.updateProgressWithTask(task, frameWidth:self.contentFrame.size.width)
+      }
     }
     saveTasks()
   }
