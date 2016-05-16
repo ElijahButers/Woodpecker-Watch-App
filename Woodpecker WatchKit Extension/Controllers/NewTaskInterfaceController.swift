@@ -111,6 +111,8 @@ extension NewTaskInterfaceController {
   func displayError() {
     errorImage.setHidden(false)
     
+    errorImage.setImageNamed("x")
+    errorImage.startAnimating()
     animateWithDuration(0.4) {
     self.errorImage.sizeToFitHeight()
     }
